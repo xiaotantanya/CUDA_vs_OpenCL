@@ -1,0 +1,3 @@
+/home/tanwen/gpu_test/cuda_test/build/CMakeFiles/Hello.dir
+/home/tanwen/gpu_test/cuda_test/build/CMakeFiles/edit_cache.dir
+/home/tanwen/gpu_test/cuda_test/build/CMakeFiles/rebuild_cache.dir
