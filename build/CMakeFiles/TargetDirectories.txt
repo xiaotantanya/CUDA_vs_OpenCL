@@ -1,0 +1,8 @@
+/home/tanwen/gpu_test/build/CMakeFiles/edit_cache.dir
+/home/tanwen/gpu_test/build/CMakeFiles/rebuild_cache.dir
+/home/tanwen/gpu_test/build/cuda_test/CMakeFiles/cuda_test.dir
+/home/tanwen/gpu_test/build/cuda_test/CMakeFiles/edit_cache.dir
+/home/tanwen/gpu_test/build/cuda_test/CMakeFiles/rebuild_cache.dir
+/home/tanwen/gpu_test/build/opencl_test/CMakeFiles/opencl_test.dir
+/home/tanwen/gpu_test/build/opencl_test/CMakeFiles/edit_cache.dir
+/home/tanwen/gpu_test/build/opencl_test/CMakeFiles/rebuild_cache.dir

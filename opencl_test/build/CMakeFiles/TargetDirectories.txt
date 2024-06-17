@@ -1,3 +1,0 @@
-/home/tanwen/gpu_test/opencl_test/build/CMakeFiles/HelloOpenCL.dir
-/home/tanwen/gpu_test/opencl_test/build/CMakeFiles/edit_cache.dir
-/home/tanwen/gpu_test/opencl_test/build/CMakeFiles/rebuild_cache.dir

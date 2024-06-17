@@ -4,8 +4,21 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <cstring>
 
-const char* programSource = R"(
+const char* multiplySource = R"(
+__kernel void vec_add(__global const float *a,
+                      __global const float *b,
+                      __global float *c,
+                      const unsigned int n) {
+    int gid = get_global_id(0);
+    if (gid < n) {
+        c[gid] = a[gid] * b[gid];
+    }
+}
+)";
+
+const char* addSource = R"(
 __kernel void vec_add(__global const float *a,
                       __global const float *b,
                       __global float *c,
@@ -17,9 +30,39 @@ __kernel void vec_add(__global const float *a,
 }
 )";
 
-int main() {
+const char* subSource = R"(
+__kernel void vec_add(__global const float *a,
+                      __global const float *b,
+                      __global float *c,
+                      const unsigned int n) {
+    int gid = get_global_id(0);
+    if (gid < n) {
+        c[gid] = a[gid] - b[gid];
+    }
+}
+)";
+
+const char* devideSource = R"(
+__kernel void vec_add(__global const float *a,
+                      __global const float *b,
+                      __global float *c,
+                      const unsigned int n) {
+    int gid = get_global_id(0);
+    if (gid < n) {
+        c[gid] = a[gid] / b[gid];
+    }
+}
+)";
+
+int main(int argc, char **argv) {
+    // 检查传递的参数数量是否正确
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <integer> <character>" << std::endl;
+        return 1;
+    }
     // 定义数组大小
-    const unsigned int n = 10000000;
+    const unsigned int n = std::atoi(argv[1]);
+    char* operation = argv[2];
 
     // 创建输入数据
     std::vector<float> a(n, 1.0f);
@@ -62,8 +105,20 @@ int main() {
     cl_mem b_buf = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * n, b.data(), &status);
     cl_mem c_buf = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(float) * n, nullptr, &status);
 
+    cl_program program;
     // 创建并编译程序
-    cl_program program = clCreateProgramWithSource(context, 1, &programSource, nullptr, &status);
+    if(strcmp(operation, "multiply") == 0){
+        program = clCreateProgramWithSource(context, 1, &multiplySource, nullptr, &status);
+    }else if(strcmp(operation, "devide") == 0){
+        program = clCreateProgramWithSource(context, 1, &devideSource, nullptr, &status);
+    }else if(strcmp(operation, "add") == 0){
+        program = clCreateProgramWithSource(context, 1, &addSource, nullptr, &status);
+    }else if(strcmp(operation, "sub") == 0){
+        program = clCreateProgramWithSource(context, 1, &subSource, nullptr, &status);
+    }else{
+        throw std::invalid_argument("Not implemented !");
+    }
+
     status = clBuildProgram(program, 1, &device, nullptr, nullptr, nullptr);
     if (status != CL_SUCCESS) {
         // 打印编译错误日志
@@ -101,20 +156,47 @@ int main() {
     std::chrono::duration<double> elapsed = end - start;
 
     // 打印运行时间
-    std::cout << "运行时间: " << elapsed.count() << " 秒\n";
+    std::cout << "Time to perform 100,000,000 multiplications: " << 1000*elapsed.count() << " ms\n";
 
     // 验证结果
     bool correct = true;
-    for (size_t i = 0; i < n; ++i) {
-        if (c[i] != a[i] + b[i]) {
-            correct = false;
-            break;
+    if(strcmp(operation, "multiply") == 0){
+        for (size_t i = 0; i < n; ++i) {
+            if (c[i] != a[i] * b[i]) {
+                correct = false;
+                break;
+            }
         }
+    }else if(strcmp(operation, "devide") == 0){
+        for (size_t i = 0; i < n; ++i) {
+            if (c[i] != a[i] / b[i]) {
+                correct = false;
+                break;
+            }
+        }
+    }else if(strcmp(operation, "add") == 0){
+        for (size_t i = 0; i < n; ++i) {
+            if (c[i] != a[i] + b[i]) {
+                correct = false;
+                break;
+            }
+        }
+    }else if(strcmp(operation, "sub") == 0){
+        for (size_t i = 0; i < n; ++i) {
+            if (c[i] != a[i] - b[i]) {
+                correct = false;
+                break;
+            }
+        }
+    }else{
+        // std::cout << operation << std::endl;
+        throw std::invalid_argument("Not implemented !");
     }
+
     if (correct) {
-        std::cout << "结果正确\n";
+        std::cout << "Result right! \n";
     } else {
-        std::cout << "结果错误\n";
+        std::cout << "Result false! \n";
     }
 
     // 释放资源
