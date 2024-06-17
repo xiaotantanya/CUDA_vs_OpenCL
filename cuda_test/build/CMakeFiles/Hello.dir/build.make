@@ -105,6 +105,7 @@ CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/move.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/nested_exception.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/ostream.tcc
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/ostream_insert.h
+CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/parse_numbers.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/postypes.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/predefined_ops.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/ptr_traits.h
@@ -121,11 +122,13 @@ CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/streambu
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/bits/stringfwd.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cctype
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cerrno
+CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/chrono
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/clocale
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cmath
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cstdint
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cstdio
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cstdlib
+CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/ctime
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cwchar
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/cwctype
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/debug/assertions.h
@@ -142,9 +145,11 @@ CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/ios
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/iosfwd
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/iostream
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/istream
+CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/limits
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/math.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/new
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/ostream
+CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/ratio
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/stdexcept
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/stdlib.h
 CMakeFiles/Hello.dir/Hello_generated_main.cu.o: /usr/include/c++/7/streambuf
@@ -331,6 +336,7 @@ Hello: /usr/local/cuda/lib64/libcudart_static.a
 Hello: /usr/lib/x86_64-linux-gnu/librt.so
 Hello: /usr/local/cuda/lib64/libcudart_static.a
 Hello: /usr/lib/x86_64-linux-gnu/librt.so
+Hello: /usr/local/cuda-11.4/lib64/libcufft.so
 Hello: CMakeFiles/Hello.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/tanwen/gpu_test/cuda_test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Hello"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Hello.dir/link.txt --verbose=$(VERBOSE)

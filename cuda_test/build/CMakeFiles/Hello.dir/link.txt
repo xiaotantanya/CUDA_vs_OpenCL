@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/Hello.dir/Hello_generated_main.cu.o -o Hello  /usr/local/cuda/lib64/libcudart_static.a -ldl /usr/lib/x86_64-linux-gnu/librt.so /usr/local/cuda/lib64/libcudart_static.a -ldl /usr/lib/x86_64-linux-gnu/librt.so -lCUFFT -lpthread
+/usr/bin/c++ CMakeFiles/Hello.dir/Hello_generated_main.cu.o -o Hello  -Wl,-rpath,/usr/local/cuda-11.4/lib64 /usr/local/cuda/lib64/libcudart_static.a -ldl /usr/lib/x86_64-linux-gnu/librt.so /usr/local/cuda/lib64/libcudart_static.a -ldl /usr/lib/x86_64-linux-gnu/librt.so /usr/local/cuda-11.4/lib64/libcufft.so -lpthread
