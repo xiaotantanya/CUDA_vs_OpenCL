@@ -76,4 +76,4 @@ NOTE:   your OpenCL library only supports OpenCL 2.2,
                 Programs using 3.0 features may crash
                 or behave unexepectedly
 ```
-网上查询这个提示，有些[网页]()说可能需要更新Intel Compute Engine，但测试服务器并不是我一个人的，我怕更新后会影响到其他人，就没有弄。实际测试过程中，OpenCL也使用GPU，这可能类似与一个警告而不是错误。
+网上查询这个提示，有些[网页](https://stackoverflow.com/questions/69971216/how-to-resolve-the-mismatch-between-opencl-library-and-opencl-platform)说可能需要更新Intel Compute Engine，但测试服务器并不是我一个人的，我怕更新后会影响到其他人，就没有弄。实际测试过程中，OpenCL也使用GPU，这可能类似与一个警告而不是错误。
