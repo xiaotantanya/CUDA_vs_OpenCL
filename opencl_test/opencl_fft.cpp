@@ -35,9 +35,14 @@ __kernel void fft(__global float2* data, int N) {
 }
 )";
 
-int main() {
-    const int NUM_TRANSFORMS = 1024;
-    const int TRANSFORM_SIZE = 204800;
+int main(int argc, char** argv) {
+    // 检查传递的参数数量是否正确
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <integer> " << std::endl;
+        return 1;
+    }
+    int NUM_TRANSFORMS = std::atoi(argv[1]);
+    const int TRANSFORM_SIZE = 2048;
 
     size_t total_size = NUM_TRANSFORMS * TRANSFORM_SIZE;
 

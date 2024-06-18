@@ -3,8 +3,7 @@
 #include <iostream>
 #include <chrono>
 
-#define NUM_TRANSFORMS 1024
-#define TRANSFORM_SIZE 204800 // 单个傅里叶变换的大小
+#define TRANSFORM_SIZE 2048 // 单个傅里叶变换的大小
 
 // 错误检查宏
 #define CHECK_CUDA_ERROR(call) {                                 \
@@ -23,7 +22,14 @@
     }                                                            \
 }
 
-int main() {
+int main(int argc, char** argv) {
+    // 检查传递的参数数量是否正确
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <integer> " << std::endl;
+        return 1;
+    }
+    int NUM_TRANSFORMS = std::atoi(argv[1]);
+    
     // 分配主机内存
     size_t total_size = NUM_TRANSFORMS * TRANSFORM_SIZE * sizeof(cufftComplex);
     cufftComplex* h_data = (cufftComplex*)malloc(total_size);
