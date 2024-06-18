@@ -1,0 +1,5 @@
+/build
+/cuda_test/build
+/opencl_test/build
+/cpu_test/build
+.vscode

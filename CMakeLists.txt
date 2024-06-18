@@ -7,3 +7,4 @@ project(gpu_test
 
 add_subdirectory(cuda_test)
 add_subdirectory(opencl_test)
+add_subdirectory(cpu_test)

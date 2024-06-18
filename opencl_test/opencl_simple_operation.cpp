@@ -64,10 +64,11 @@ int main(int argc, char **argv) {
     const unsigned int n = std::atoi(argv[1]);
     char* operation = argv[2];
 
+    const size_t size = n * sizeof(float);
     // 创建输入数据
-    std::vector<float> a(n, 1.0f);
-    std::vector<float> b(n, 2.0f);
-    std::vector<float> c(n);
+    float* a = (float*)malloc(size);
+    float* b = (float*)malloc(size);
+    float* c = (float*)malloc(size);
 
     // 获取所有可用平台
     cl_uint numPlatforms;
@@ -101,8 +102,8 @@ int main(int argc, char **argv) {
     cl_command_queue queue = clCreateCommandQueue(context, device, 0, &status);
 
     // 创建缓冲区
-    cl_mem a_buf = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * n, a.data(), &status);
-    cl_mem b_buf = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * n, b.data(), &status);
+    cl_mem a_buf = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * n, a, &status);
+    cl_mem b_buf = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR, sizeof(float) * n, b, &status);
     cl_mem c_buf = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(float) * n, nullptr, &status);
 
     cl_program program;
@@ -149,14 +150,14 @@ int main(int argc, char **argv) {
     status = clEnqueueNDRangeKernel(queue, kernel, 1, nullptr, &globalSize, nullptr, 0, nullptr, nullptr);
 
     // 读取结果
-    clEnqueueReadBuffer(queue, c_buf, CL_TRUE, 0, sizeof(float) * n, c.data(), 0, nullptr, nullptr);
+    clEnqueueReadBuffer(queue, c_buf, CL_TRUE, 0, sizeof(float) * n, c, 0, nullptr, nullptr);
 
     // 记录结束时间
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> elapsed = end - start;
 
     // 打印运行时间
-    std::cout << "Time to perform 100,000,000 multiplications: " << 1000*elapsed.count() << " ms\n";
+    std::cout << "Time to perform " << n <<" "<< operation << ": " << 1000*elapsed.count() << " ms\n";
 
     // 验证结果
     bool correct = true;

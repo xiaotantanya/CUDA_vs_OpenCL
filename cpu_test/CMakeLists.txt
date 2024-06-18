@@ -1,0 +1,2 @@
+add_executable(cpu_test cpu_simple_operation.cpp)
+add_executable(cpu_matmul cpu_matmul.cpp)
